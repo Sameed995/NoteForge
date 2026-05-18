@@ -11,5 +11,13 @@
   },
   "keywords": [],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sameed995/NoteForge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sameed995/NoteForge/issues"
+  },
+  "homepage": "https://github.com/Sameed995/NoteForge#readme"
 }
