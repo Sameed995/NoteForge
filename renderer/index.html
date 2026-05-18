@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self';" />
+  <title>Notes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Sidebar -->
+    <aside id="sidebar">
+      <div id="sidebar-header">
+        <div id="app-brand">
+          <span class="brand-icon">◈</span>
+          <span class="brand-name">Notes</span>
+        </div>
+        <button id="new-note-btn" title="New Note">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div id="search-wrapper">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Search notes…" autocomplete="off" spellcheck="false" />
+        <button id="clear-search" class="hidden" title="Clear search">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+            <path d="M1 1l8 8M9 1L1 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div id="notes-list-wrapper">
+        <ul id="notes-list"></ul>
+        <div id="empty-state" class="hidden">
+          <span class="empty-icon">✦</span>
+          <p>No notes yet.<br/>Click <strong>+</strong> to begin.</p>
+        </div>
+        <div id="no-results" class="hidden">
+          <span class="empty-icon">◌</span>
+          <p>No matches found.</p>
+        </div>
+      </div>
+
+      <div id="sidebar-footer">
+        <span id="note-count">0 notes</span>
+      </div>
+    </aside>
+
+    <!-- Editor Pane -->
+    <main id="editor-pane">
+      <div id="editor-toolbar">
+        <input
+          type="text"
+          id="note-title"
+          placeholder="Untitled note"
+          autocomplete="off"
+          spellcheck="false"
+          maxlength="120"
+        />
+        <div id="toolbar-actions">
+          <span id="save-indicator" class="hidden">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Saved
+          </span>
+          <button id="delete-note-btn" class="hidden" title="Delete note">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+              <path d="M3 4h10M6 4V2.5a.5.5 0 01.5-.5h3a.5.5 0 01.5.5V4M5 4l.5 9h5L11 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="editor-meta" class="hidden">
+        <span id="note-date"></span>
+        <span id="word-count">0 words</span>
+      </div>
+
+      <textarea
+        id="note-content"
+        placeholder="Start writing…"
+        spellcheck="true"
+      ></textarea>
+
+      <div id="welcome-screen">
+        <div class="welcome-inner">
+          <div class="welcome-glyph">◈</div>
+          <h1>Notes</h1>
+          <p>A quiet place for your thoughts.</p>
+          <button id="welcome-new-btn">New Note</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast" class="hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
