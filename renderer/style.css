@@ -53,7 +53,7 @@ html, body {
   user-select: none;
 }
 
-/* ── Layout ─────────────────────────────────────────────────── */
+/* Layout */
 #app {
   display: flex;
   height: 100vh;
@@ -61,7 +61,7 @@ html, body {
   overflow: hidden;
 }
 
-/* ── Sidebar ────────────────────────────────────────────────── */
+/*  Sidebar */
 #sidebar {
   width: var(--sidebar-width);
   min-width: var(--sidebar-width);
@@ -314,7 +314,7 @@ html, body {
   letter-spacing: 0.04em;
 }
 
-/* ── Editor Pane ─────────────────────────────────────────────── */
+/* Editor Pane  */
 #editor-pane {
   flex: 1;
   display: flex;

@@ -1,13 +1,13 @@
-/* renderer/app.js — Notes app renderer logic */
+/* renderer/app.js — renderer logic */
 
-// ── State ────────────────────────────────────────────────────
+// state
 let notes = [];          // all notes loaded from backend
 let activeNoteId = null; // currently open note id
 let searchQuery = '';    // active search filter
 let saveTimer = null;    // debounce timer
 let toastTimer = null;   // toast hide timer
 
-// ── DOM refs ─────────────────────────────────────────────────
+// dom references
 const notesList      = document.getElementById('notes-list');
 const emptyState     = document.getElementById('empty-state');
 const noResults      = document.getElementById('no-results');
@@ -24,7 +24,7 @@ const saveIndicator  = document.getElementById('save-indicator');
 const welcomeScreen  = document.getElementById('welcome-screen');
 const toast          = document.getElementById('toast');
 
-// ── Utilities ─────────────────────────────────────────────────
+// utility functions
 
 function generateId() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
@@ -92,7 +92,7 @@ function flashSaved() {
   setTimeout(() => saveIndicator.classList.remove('visible'), 2000);
 }
 
-// ── Render sidebar list ────────────────────────────────────────
+// sidebar rendering
 
 function getFilteredNotes() {
   if (!searchQuery) return notes;
@@ -134,7 +134,7 @@ function renderList() {
   });
 }
 
-// ── Select / load note into editor ────────────────────────────
+// Select / load note into editor 
 
 function selectNote(id) {
   // Flush any pending save for previous note
@@ -161,7 +161,7 @@ function selectNote(id) {
   noteTitle.focus();
 }
 
-// ── Create new note ────────────────────────────────────────────
+//Create new note 
 
 function createNote() {
   const note = {
@@ -208,7 +208,7 @@ async function flushSave() {
 
 const debouncedSave = debounce(flushSave, 500);
 
-// ── Delete note ───────────────────────────────────────────────
+// Delete note 
 
 async function deleteActiveNote() {
   if (!activeNoteId) return;
@@ -239,7 +239,7 @@ async function deleteActiveNote() {
   }
 }
 
-// ── Search ────────────────────────────────────────────────────
+//  Search 
 
 function handleSearch(e) {
   searchQuery = e.target.value.trim();
@@ -255,7 +255,7 @@ function clearSearchHandler() {
   searchInput.focus();
 }
 
-// ── Keyboard shortcuts ─────────────────────────────────────────
+// Keyboard shortcuts 
 
 document.addEventListener('keydown', e => {
   const mod = e.metaKey || e.ctrlKey;
@@ -279,7 +279,7 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// ── Event listeners ───────────────────────────────────────────
+// event listeners
 
 document.getElementById('new-note-btn').addEventListener('click', createNote);
 document.getElementById('welcome-new-btn').addEventListener('click', createNote);
@@ -321,7 +321,7 @@ window.addEventListener('beforeunload', () => {
   }
 });
 
-// ── Init ──────────────────────────────────────────────────────
+// Init 
 
 async function init() {
   notes = await window.notesAPI.getNotes();
