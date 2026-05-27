@@ -39,6 +39,33 @@
   --transition-slow:300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ── Dark Mode Variables ─────────────────────────────────────── */
+[data-theme="dark"] {
+  --bg-base:        #1a1815;
+  --bg-sidebar:     #0f0d0a;
+  --bg-editor:      #13110e;
+  --bg-item:        #1f1c18;
+  --bg-item-hover:  #242120;
+  --bg-item-active: #2a2723;
+  --bg-input:       #1e1b17;
+  --bg-toolbar:     #1a1714;
+
+  --border:         rgba(255,255,255,0.08);
+  --border-strong:  rgba(255,255,255,0.14);
+
+  --text-primary:   #e8e5e0;
+  --text-secondary: #c5c1ba;
+  --text-muted:     #8a837a;
+  --text-accent:    #8fa7bc;
+
+  --accent:         #8fa7bc;
+  --accent-dim:     rgba(143,167,188,0.12);
+  --accent-glow:    rgba(143,167,188,0.08);
+
+  --red:            #d97c6f;
+  --red-dim:        rgba(217,124,111,0.12);
+}
+
 /* ── Reset ──────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -91,6 +118,36 @@ html, body {
   align-items: center;
   gap: 8px;
 }
+
+#header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+#theme-toggle-btn {
+  -webkit-app-region: no-drag;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(94,111,125,0.16);
+  border-radius: var(--radius-sm);
+  color: var(--accent);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+  flex-shrink: 0;
+}
+
+#theme-toggle-btn:hover {
+  background: rgba(94,111,125,0.16);
+  transform: scale(1.05);
+}
+
+#theme-toggle-btn:active { transform: scale(0.95); }
 
 .brand-icon {
   font-size: 16px;

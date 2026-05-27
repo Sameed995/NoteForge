@@ -23,8 +23,23 @@ const deletBtn       = document.getElementById('delete-note-btn');
 const saveIndicator  = document.getElementById('save-indicator');
 const welcomeScreen  = document.getElementById('welcome-screen');
 const toast          = document.getElementById('toast');
+const themeToggleBtn = document.getElementById('theme-toggle-btn');
 
 // utility functions
+
+function initializeTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', theme);
+}
+
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+}
 
 function generateId() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
@@ -283,6 +298,7 @@ document.addEventListener('keydown', e => {
 
 document.getElementById('new-note-btn').addEventListener('click', createNote);
 document.getElementById('welcome-new-btn').addEventListener('click', createNote);
+themeToggleBtn.addEventListener('click', toggleTheme);
 deletBtn.addEventListener('click', deleteActiveNote);
 searchInput.addEventListener('input', handleSearch);
 clearSearch.addEventListener('click', clearSearchHandler);
@@ -324,6 +340,7 @@ window.addEventListener('beforeunload', () => {
 // Init 
 
 async function init() {
+  initializeTheme();
   notes = await window.notesAPI.getNotes();
   // Sort newest-first
   notes.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
